@@ -22,12 +22,8 @@ function Header() {
   return (
     <header className="border-b border-neutral-200 bg-white px-4 py-3">
       <div className="mx-auto flex max-w-5xl items-center justify-between">
-        <Link
-          to="/"
-          onClick={() => setMenuOuvert(false)}
-          className="inline-flex min-h-11 items-center text-base font-semibold text-neutral-900"
-        >
-          Rebond
+        <Link to="/" onClick={() => setMenuOuvert(false)} className="inline-flex min-h-11 items-center">
+          <img src="/img/logo.png" alt="Rebond" className="h-8 w-auto" />
         </Link>
 
         <nav className="hidden sm:flex sm:items-center sm:gap-1" aria-label="Navigation principale">
