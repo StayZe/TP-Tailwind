@@ -1,6 +1,8 @@
+import Catalogue from "./screens/Catalogue"
+
 function App() {
-  // Placeholder temporaire : les écrans (Accueil, Catalogue, Réservation) arrivent aux étapes suivantes.
-  return <p>Rebond — en construction</p>
+  // Montage temporaire : la navigation entre écrans (Accueil, Catalogue, Réservation) arrive à l'étape 6.
+  return <Catalogue />
 }
 
 export default App
