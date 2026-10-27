@@ -1,0 +1,15 @@
+# Rebond
+
+> Boutique de smartphones reconditionnés à Sedan. Catalogue en ligne, garantie 12 mois, retrait gratuit en boutique. Site de démonstration réalisé dans un cadre pédagogique (ESGI Reims).
+
+## Pages
+
+- [Accueil](/): proposition de valeur et accès au catalogue
+- [Catalogue](/catalogue): liste des téléphones reconditionnés disponibles, avec détail par modèle
+- [Réservation](/reservation): formulaire de réservation pour un retrait en boutique
+- [Mentions légales](/mentions-legales)
+- [Politique de confidentialité](/confidentialite)
+
+## Données
+
+- [Catalogue des téléphones (JSON)](/ai-catalog.json): liste complète des téléphones, prix et disponibilité
