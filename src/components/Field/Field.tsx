@@ -8,9 +8,7 @@ type FieldProps = {
   type?: "text" | "email" | "tel" | "date"
   error?: string
   required?: boolean
-  placeholder?: string
   disabled?: boolean
-  autoComplete?: string
   // Pour type="date" : bornes natives (ex. limiter le retrait aux 48h à venir).
   min?: string
   max?: string
@@ -24,9 +22,7 @@ function Field({
   type = "text",
   error,
   required = false,
-  placeholder,
   disabled = false,
-  autoComplete,
   min,
   max,
 }: FieldProps) {
@@ -42,9 +38,7 @@ function Field({
         id={id}
         type={type}
         value={value}
-        placeholder={placeholder}
         disabled={disabled}
-        autoComplete={autoComplete}
         min={min}
         max={max}
         required={required}

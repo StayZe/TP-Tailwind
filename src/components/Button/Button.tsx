@@ -20,7 +20,6 @@ type ButtonProps = {
   variant?: ButtonVariant
   type?: "button" | "submit"
   disabled?: boolean
-  ariaLabel?: string
 }
 
 function Button({
@@ -29,14 +28,12 @@ function Button({
   variant = "primary",
   type = "button",
   disabled = false,
-  ariaLabel,
 }: ButtonProps) {
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      aria-label={ariaLabel}
       className={`${classesBase} ${classesParVariante[variant]}`}
     >
       {children}
@@ -49,14 +46,14 @@ export default Button
 type BoutonLienProps = {
   children: ReactNode
   to: string
-  variant?: ButtonVariant
 }
 
-// Même apparence que Button, mais pour une vraie navigation : une balise <a> (via react-router),
-// pas un <button>, pour rester correct au clavier et pour les lecteurs d'écran.
-export function BoutonLien({ children, to, variant = "primary" }: BoutonLienProps) {
+// Même apparence que Button (variante primary), mais pour une vraie navigation : une balise
+// <a> (via react-router), pas un <button>, pour rester correct au clavier et pour les
+// lecteurs d'écran.
+export function BoutonLien({ children, to }: BoutonLienProps) {
   return (
-    <Link to={to} className={`${classesBase} ${classesParVariante[variant]}`}>
+    <Link to={to} className={`${classesBase} ${classesParVariante.primary}`}>
       {children}
     </Link>
   )
