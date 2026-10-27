@@ -4,6 +4,7 @@ import Button from "../components/Button/Button"
 import Card from "../components/Card/Card"
 import EtatBadge from "../components/EtatBadge/EtatBadge"
 import Modal from "../components/Modal/Modal"
+import PhotoTelephone from "../components/PhotoTelephone/PhotoTelephone"
 import type { Telephone } from "../types/telephone"
 
 // Le JSON est élargi en `string` par TypeScript (limite connue des imports JSON) ;
@@ -39,6 +40,12 @@ function Catalogue({ onReserver }: CatalogueProps) {
           onFermer={() => setTelephoneSelectionne(null)}
         >
           <div className="flex flex-col gap-3">
+            <div className="flex h-48 items-center justify-center rounded-md bg-neutral-50">
+              <PhotoTelephone
+                telephone={telephoneSelectionne}
+                className="h-full w-full object-contain p-4 text-primary-600"
+              />
+            </div>
             <EtatBadge etat={telephoneSelectionne.etat} />
             <p className="text-lg font-semibold text-neutral-900">
               {formatteurPrix.format(telephoneSelectionne.prix)}

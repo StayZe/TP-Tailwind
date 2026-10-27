@@ -1,7 +1,7 @@
 import type { Telephone } from "../../types/telephone"
 import Button from "../Button/Button"
 import EtatBadge from "../EtatBadge/EtatBadge"
-import PictoTelephone from "../icons/PictoTelephone"
+import PhotoTelephone from "../PhotoTelephone/PhotoTelephone"
 
 type CardProps = {
   telephone: Telephone
@@ -18,7 +18,12 @@ function Card({ telephone, onVoirDetail }: CardProps) {
 
   return (
     <div className="flex flex-col gap-3 rounded-md border border-neutral-200 bg-white p-4">
-      <PictoTelephone className="h-10 w-10 text-primary-600" />
+      <div className="flex h-32 items-center justify-center rounded-md bg-neutral-50">
+        <PhotoTelephone
+          telephone={telephone}
+          className="h-full w-full object-contain p-3 text-primary-600"
+        />
+      </div>
       <div className="flex items-start justify-between gap-2">
         <h3 className="text-base font-semibold text-neutral-900">
           {telephone.marque} {telephone.modele}
