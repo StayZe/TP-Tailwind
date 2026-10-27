@@ -13,8 +13,18 @@ const PRIX_GARANTIE_ETENDUE = 29
 const formatteurPrix = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" })
 const formatteurDate = new Intl.DateTimeFormat("fr-FR", { dateStyle: "long" })
 
+// En date locale (et non UTC comme le ferait toISOString) : un <input type="date">
+// travaille toujours dans le calendrier local de la personne qui le remplit.
 function dateEnISO(date: Date): string {
-  return date.toISOString().slice(0, 10)
+  const annee = date.getFullYear()
+  const mois = String(date.getMonth() + 1).padStart(2, "0")
+  const jour = String(date.getDate()).padStart(2, "0")
+  return `${annee}-${mois}-${jour}`
+}
+
+function dateLocaleDepuisISO(iso: string): Date {
+  const [annee, mois, jour] = iso.split("-").map(Number)
+  return new Date(annee, mois - 1, jour)
 }
 
 // Retrait possible seulement dans les 48h (aujourd'hui et les deux jours suivants).
@@ -87,15 +97,13 @@ function Reservation({ telephoneIdInitial = "", onRetourAccueil }: ReservationPr
           boutique de Sedan.
         </p>
         <ul className="mt-4 flex flex-col gap-1 text-neutral-900">
-          <li>Retrait prévu le {formatteurDate.format(new Date(dateRetrait))}</li>
+          <li>Retrait prévu le {formatteurDate.format(dateLocaleDepuisISO(dateRetrait))}</li>
           <li>Garantie {garantieEtendue ? "24 mois" : "12 mois"}</li>
           <li>Total à régler en boutique : {formatteurPrix.format(prixTotal)}</li>
           <li>Confirmation envoyée à {email}</li>
         </ul>
         <div className="mt-6">
-          <Button variant="secondary" onClick={onRetourAccueil}>
-            Retour à l'accueil
-          </Button>
+          <Button onClick={onRetourAccueil}>Retour à l'accueil</Button>
         </div>
       </section>
     )
