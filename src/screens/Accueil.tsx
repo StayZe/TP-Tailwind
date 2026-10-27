@@ -1,8 +1,4 @@
-import Button from "../components/Button/Button"
-
-type AccueilProps = {
-  onVoirTelephones: () => void
-}
+import { BoutonLien } from "../components/Button/Button"
 
 const offres = [
   { titre: "Garantie 12 mois", description: "Incluse sur tous les téléphones reconditionnés." },
@@ -11,7 +7,7 @@ const offres = [
   { titre: "Retrait gratuit", description: "Récupérez votre commande à la boutique de Sedan." },
 ]
 
-function Accueil({ onVoirTelephones }: AccueilProps) {
+function Accueil() {
   return (
     <section className="mx-auto max-w-3xl px-4 py-12 text-center">
       <h1 className="text-3xl font-semibold text-neutral-900">
@@ -22,7 +18,7 @@ function Accueil({ onVoirTelephones }: AccueilProps) {
       </p>
 
       <div className="mt-8 flex justify-center">
-        <Button onClick={onVoirTelephones}>Voir les téléphones</Button>
+        <BoutonLien to="/catalogue">Voir les téléphones</BoutonLien>
       </div>
 
       <ul className="mt-12 grid grid-cols-1 gap-4 text-left sm:grid-cols-2">

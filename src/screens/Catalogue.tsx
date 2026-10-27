@@ -1,6 +1,6 @@
 import { useState } from "react"
 import telephonesJson from "../data/telephones.json"
-import Button from "../components/Button/Button"
+import { BoutonLien } from "../components/Button/Button"
 import Card from "../components/Card/Card"
 import EtatBadge from "../components/EtatBadge/EtatBadge"
 import Modal from "../components/Modal/Modal"
@@ -13,11 +13,7 @@ const telephones = telephonesJson as Telephone[]
 
 const formatteurPrix = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" })
 
-type CatalogueProps = {
-  onReserver: (telephoneId: string) => void
-}
-
-function Catalogue({ onReserver }: CatalogueProps) {
+function Catalogue() {
   const [telephoneSelectionne, setTelephoneSelectionne] = useState<Telephone | null>(null)
 
   return (
@@ -62,12 +58,11 @@ function Catalogue({ onReserver }: CatalogueProps) {
                 ? `${telephoneSelectionne.stock} en stock à l'atelier de Sedan`
                 : "Actuellement en rupture de stock"}
             </p>
-            <Button
-              onClick={() => onReserver(telephoneSelectionne.id)}
-              disabled={telephoneSelectionne.stock === 0}
-            >
+            {/* La modal ne s'ouvre que depuis une Card dont le bouton n'est pas désactivé :
+                un téléphone en rupture de stock n'arrive donc jamais ici. */}
+            <BoutonLien to={`/reservation?telephone=${telephoneSelectionne.id}`}>
               Réserver ce téléphone
-            </Button>
+            </BoutonLien>
           </div>
         </Modal>
       )}

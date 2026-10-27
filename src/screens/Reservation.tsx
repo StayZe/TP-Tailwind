@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from "react"
+import { useSearchParams } from "react-router-dom"
 import telephonesJson from "../data/telephones.json"
 import type { Telephone } from "../types/telephone"
-import Button from "../components/Button/Button"
+import Button, { BoutonLien } from "../components/Button/Button"
 import Field from "../components/Field/Field"
 
 // Le JSON est élargi en `string` par TypeScript (limite connue des imports JSON) ;
@@ -35,14 +36,10 @@ type Erreurs = Partial<
   Record<"telephoneId" | "nom" | "email" | "telephoneClient" | "dateRetrait", string>
 >
 
-type ReservationProps = {
-  // Préselectionné quand on arrive depuis la fiche d'un téléphone dans le Catalogue.
-  telephoneIdInitial?: string
-  onRetourAccueil: () => void
-}
-
-function Reservation({ telephoneIdInitial = "", onRetourAccueil }: ReservationProps) {
-  const [telephoneId, setTelephoneId] = useState(telephoneIdInitial)
+function Reservation() {
+  // Préselectionné via l'URL (/reservation?telephone=...) quand on arrive depuis le Catalogue.
+  const [searchParams] = useSearchParams()
+  const [telephoneId, setTelephoneId] = useState(searchParams.get("telephone") ?? "")
   const [garantieEtendue, setGarantieEtendue] = useState(false)
   const [nom, setNom] = useState("")
   const [email, setEmail] = useState("")
@@ -103,7 +100,7 @@ function Reservation({ telephoneIdInitial = "", onRetourAccueil }: ReservationPr
           <li>Confirmation envoyée à {email}</li>
         </ul>
         <div className="mt-6">
-          <Button onClick={onRetourAccueil}>Retour à l'accueil</Button>
+          <BoutonLien to="/">Retour à l'accueil</BoutonLien>
         </div>
       </section>
     )
