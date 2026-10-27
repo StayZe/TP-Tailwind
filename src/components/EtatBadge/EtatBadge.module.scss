@@ -1,0 +1,14 @@
+@use "../../styles/etats" as etats;
+@use "../../styles/mixins" as mixins;
+
+.badge {
+  @include mixins.badge-base;
+}
+
+// Génère une classe par état (.excellent, .bon, .correct) depuis la map $etats.
+@each $nom, $couleurs in etats.$etats {
+  .#{$nom} {
+    background-color: map-get($couleurs, fond);
+    color: map-get($couleurs, texte);
+  }
+}

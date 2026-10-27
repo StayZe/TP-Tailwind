@@ -1,1 +1,42 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+/*
+ * Tokens du design system. Toutes les couleurs et la police utilisées dans les
+ * composants DOIVENT venir d'ici (classes Tailwind générées automatiquement :
+ * bg-primary-600, text-accent-700, border-neutral-200, text-error, etc.).
+ * Aucune autre couleur ne doit apparaître ailleurs dans le projet.
+ */
+@theme {
+  --color-primary-50: #eef7f1;
+  --color-primary-100: #d5ebdc;
+  --color-primary-600: #1f6f4a;
+  --color-primary-700: #195a3d;
+  --color-primary-900: #0f3624;
+
+  --color-accent-50: #fff4d6;
+  --color-accent-700: #7a4e00;
+
+  --color-neutral-50: #fafafa;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-500: #71717a;
+  --color-neutral-900: #18181b;
+
+  --color-error: #b42318;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-neutral-50 font-sans text-neutral-900;
+    /* Taille de base >= 16px (confort de lecture pour Monique). */
+    font-size: 16px;
+  }
+
+  /* Contour de focus visible et cohérent sur tout le site (navigation clavier). */
+  :focus-visible {
+    outline: 2px solid var(--color-primary-600);
+    outline-offset: 2px;
+  }
+}

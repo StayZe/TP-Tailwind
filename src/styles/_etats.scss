@@ -1,0 +1,16 @@
+// Couleurs (fond / texte) par état, basées sur les variables CSS définies dans
+// @theme (src/index.css) : aucune couleur en dur ici, seulement des var(--color-...).
+$etats: (
+  "excellent": (
+    fond: var(--color-primary-100),
+    texte: var(--color-primary-700),
+  ),
+  "bon": (
+    fond: var(--color-neutral-200),
+    texte: var(--color-neutral-900),
+  ),
+  "correct": (
+    fond: var(--color-accent-50),
+    texte: var(--color-accent-700),
+  ),
+);
