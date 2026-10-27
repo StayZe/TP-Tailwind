@@ -25,8 +25,14 @@ type Erreurs = Partial<
   Record<"telephoneId" | "nom" | "email" | "telephoneClient" | "dateRetrait", string>
 >
 
-function Reservation() {
-  const [telephoneId, setTelephoneId] = useState("")
+type ReservationProps = {
+  // Préselectionné quand on arrive depuis la fiche d'un téléphone dans le Catalogue.
+  telephoneIdInitial?: string
+  onRetourAccueil: () => void
+}
+
+function Reservation({ telephoneIdInitial = "", onRetourAccueil }: ReservationProps) {
+  const [telephoneId, setTelephoneId] = useState(telephoneIdInitial)
   const [garantieEtendue, setGarantieEtendue] = useState(false)
   const [nom, setNom] = useState("")
   const [email, setEmail] = useState("")
@@ -86,6 +92,11 @@ function Reservation() {
           <li>Total à régler en boutique : {formatteurPrix.format(prixTotal)}</li>
           <li>Confirmation envoyée à {email}</li>
         </ul>
+        <div className="mt-6">
+          <Button variant="secondary" onClick={onRetourAccueil}>
+            Retour à l'accueil
+          </Button>
+        </div>
       </section>
     )
   }

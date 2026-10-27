@@ -1,5 +1,6 @@
 import { useState } from "react"
 import telephonesJson from "../data/telephones.json"
+import Button from "../components/Button/Button"
 import Card from "../components/Card/Card"
 import EtatBadge from "../components/EtatBadge/EtatBadge"
 import Modal from "../components/Modal/Modal"
@@ -11,7 +12,11 @@ const telephones = telephonesJson as Telephone[]
 
 const formatteurPrix = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" })
 
-function Catalogue() {
+type CatalogueProps = {
+  onReserver: (telephoneId: string) => void
+}
+
+function Catalogue({ onReserver }: CatalogueProps) {
   const [telephoneSelectionne, setTelephoneSelectionne] = useState<Telephone | null>(null)
 
   return (
@@ -50,6 +55,12 @@ function Catalogue() {
                 ? `${telephoneSelectionne.stock} en stock à l'atelier de Sedan`
                 : "Actuellement en rupture de stock"}
             </p>
+            <Button
+              onClick={() => onReserver(telephoneSelectionne.id)}
+              disabled={telephoneSelectionne.stock === 0}
+            >
+              Réserver ce téléphone
+            </Button>
           </div>
         </Modal>
       )}
