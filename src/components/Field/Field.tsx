@@ -11,6 +11,9 @@ type FieldProps = {
   placeholder?: string
   disabled?: boolean
   autoComplete?: string
+  // Pour type="date" : bornes natives (ex. limiter le retrait aux 48h à venir).
+  min?: string
+  max?: string
 }
 
 function Field({
@@ -24,6 +27,8 @@ function Field({
   placeholder,
   disabled = false,
   autoComplete,
+  min,
+  max,
 }: FieldProps) {
   const idErreur = `${id}-erreur`
 
@@ -40,6 +45,8 @@ function Field({
         placeholder={placeholder}
         disabled={disabled}
         autoComplete={autoComplete}
+        min={min}
+        max={max}
         required={required}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? idErreur : undefined}
